@@ -1,7 +1,12 @@
 import React, { memo } from 'react';
 
-const Word = memo(({ correct, text, active}) => {
+interface Props {
+  correct: boolean;
+  text: string;
+  active: boolean;
+}
 
+const Word: React.FC<Props> = memo(({ correct, text, active}) => {
   if (correct === true) {
     return <span className='correct'>{text} </span>
   }

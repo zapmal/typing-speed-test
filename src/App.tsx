@@ -7,16 +7,16 @@ import getWordList from './getWordList';
 
 import './App.css';
 
-const App = () => {
+const App: React.FC<{}> = () => {
   const [input, setInput] = useState('');
   const wordList = useRef(getWordList());
   const [activeWordIndex, setActiveWordIndex] = useState(0);
-  const [correctWords, setCorrectWords] = useState([]);
+  const [correctWords, setCorrectWords] = useState<boolean[]>([]);
   const [startCounting, setStartCounting] = useState(false);
 
   const ranOutOfWords = wordList.current[activeWordIndex] ? false : true
 
-  const processInput = (value) => {
+  const processInput = (value: string): void => {
     setStartCounting(true);
 
     if (value.endsWith(' ')) {

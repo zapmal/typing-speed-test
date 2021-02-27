@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Timer = ({ startCounting, correctWords }) => {
-  const intervalRef = useRef(null);
+interface Props {
+  startCounting: boolean;
+  correctWords: number;
+};
+
+const Timer: React.FC<Props> = ({ startCounting, correctWords }) => {
+  const intervalRef = useRef<number>(0);
   const [timeElapsed, setTimeElapsed] = useState(0);
 
   useEffect(() => {
     if (startCounting) {
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = window.setInterval(() => {
         setTimeElapsed(oldTime => oldTime + 1);
       }, 1000);
     }
 
-    return () => {
-      clearInterval(intervalRef.current);
-    };
+    return () => window.clearInterval(intervalRef.current);
   }, [startCounting]);
 
   const minutes = timeElapsed / 60;
